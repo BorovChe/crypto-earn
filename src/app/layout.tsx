@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-
-import ReduxProvider from "./StoreProvider";
+import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
   title: "Arbitration",
@@ -22,7 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <Header />
+        <main>{children}</main>
       </body>
     </html>
   );
