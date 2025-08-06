@@ -1,8 +1,6 @@
-import axios from "axios";
-
 export async function getMexcStaking() {
   try {
-    const response = await axios(
+    const res = await fetch(
       "https://www.mexc.com/api/operateactivity/staking?currency=USDT",
       {
         headers: {
@@ -15,9 +13,11 @@ export async function getMexcStaking() {
       }
     );
 
-    const data = response?.data?.data[1]?.holdPosList[0];
+    const data = await res.json();
 
-    const apy = data.maxStepRate * 100;
+    const stakingData = data?.data[1]?.holdPosList[0];
+
+    const apy = stakingData.maxStepRate * 100;
 
     const updatedData = {
       coin: "USDT",
@@ -32,6 +32,6 @@ export async function getMexcStaking() {
     return updatedData;
   } catch (error: unknown) {
     console.log(error);
-    return [];
+    throw new Error("Error");
   }
 }
