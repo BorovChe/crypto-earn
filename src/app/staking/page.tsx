@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-import { getBybitStaking } from "@/services/staking/getBybitStaking";
-import { getMexcStaking } from "@/services/staking/getMexcStaking";
-import { getBitgetStaking } from "@/services/staking/getBitgetStaking";
-import { getGateStaking } from "@/services/staking/getGateStaking";
-import { getBinanceStaking } from "@/services/staking/getBinanceStaking";
-import { getKukoinStaking } from "@/services/staking/getKukoinStaking";
-import { getOkxStaking } from "@/services/staking/getOkxStaking";
-import { getHuobiStaking } from "@/services/staking/getHuobiStaking";
+import { getBybitStaking } from "../../../pages/api/staking/getBybitStaking";
+import { getMexcStaking } from "../../../pages/api/staking/getMexcStaking";
+import { getBitgetStaking } from "../../../pages/api/staking/getBitgetStaking";
+import { getGateStaking } from "../../../pages/api/staking/getGateStaking";
+import { getBinanceStaking } from "../../../pages/api/staking/getBinanceStaking";
+import { getKukoinStaking } from "../../../pages/api/staking/getKukoinStaking";
+import { getOkxStaking } from "../../../pages/api/staking/getOkxStaking";
+import { getHuobiStaking } from "../../../pages/api/staking/getHuobiStaking";
 import { IStakingData } from "@/interfaces/staking";
 // import { getWhitebitStaking } from "@/services/staking/getWhiteBitStaking";
 // import { getBingXStaking } from "../../services/staking/getBingXStaking";
