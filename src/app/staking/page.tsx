@@ -9,86 +9,90 @@ import { getKukoinStaking } from "../../../pages/api/staking/getKukoinStaking";
 import { getOkxStaking } from "../../../pages/api/staking/getOkxStaking";
 import { getHuobiStaking } from "../../../pages/api/staking/getHuobiStaking";
 import { IStakingData } from "@/interfaces/staking";
-// import { getWhitebitStaking } from "@/services/staking/getWhiteBitStaking";
-// import { getBingXStaking } from "../../services/staking/getBingXStaking";
 
-// export const revalidate = 1000;
 export const dynamic = "force-dynamic";
 
 const StakingPage = async () => {
-  const bybitData: IStakingData = await getBybitStaking()!;
-  const mexcData: IStakingData = await getMexcStaking()!;
-  const bitgetData: IStakingData = await getBitgetStaking()!;
-  const gateData: IStakingData = await getGateStaking()!;
-  const binanceData: IStakingData = await getBinanceStaking();
-  const kukoinData: IStakingData = await getKukoinStaking()!;
-  const okxData: IStakingData = await getOkxStaking()!;
-  const huobiData: IStakingData = await getHuobiStaking()!;
-  // console.log(bybitData);!
-  // const whitebitData = await getWhitebitStaking();
-  // console.log(whitebitData);
-  // const bingXData = await getBingXStaking();
-  // console.log(bingXData);
+  let bybitData: IStakingData | null = null;
+  let mexcData: IStakingData | null = null;
+  let bitgetData: IStakingData | null = null;
+  let gateData: IStakingData | null = null;
+  let binanceData: IStakingData | null = null;
+  let kukoinData: IStakingData | null = null;
+  let okxData: IStakingData | null = null;
+  let huobiData: IStakingData | null = null;
+
+  try {
+    bybitData = await getBybitStaking();
+  } catch (e) {
+    console.error("Bybit staking error:", e);
+  }
+
+  try {
+    mexcData = await getMexcStaking();
+  } catch (e) {
+    console.error("MEXC staking error:", e);
+  }
+
+  try {
+    bitgetData = await getBitgetStaking();
+  } catch (e) {
+    console.error("Bitget staking error:", e);
+  }
+
+  try {
+    gateData = await getGateStaking();
+  } catch (e) {
+    console.error("Gate staking error:", e);
+  }
+
+  try {
+    binanceData = await getBinanceStaking();
+  } catch (e) {
+    console.error("Binance staking error:", e);
+  }
+
+  try {
+    kukoinData = await getKukoinStaking();
+  } catch (e) {
+    console.error("Kukoin staking error:", e);
+  }
+
+  try {
+    okxData = await getOkxStaking();
+  } catch (e) {
+    console.error("OKX staking error:", e);
+  }
+
+  try {
+    huobiData = await getHuobiStaking();
+  } catch (e) {
+    console.error("Huobi staking error:", e);
+  }
+
+  const stakingList = [
+    mexcData,
+    bybitData,
+    bitgetData,
+    gateData,
+    binanceData,
+    kukoinData,
+    okxData,
+    huobiData,
+  ].filter(Boolean) as IStakingData[];
 
   return (
     <div className="py-4">
       <h1 className="mb-4 text-xl text-center font-bold">Staking Page</h1>
-
       <ul>
-        <li className="flex justify-center gap-10">
-          <p>{mexcData.coin}</p>
-          <Link href={mexcData.exchange.link}>{mexcData.exchange.title}</Link>
-          <p>{mexcData.apy}</p>
-          <p>{mexcData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{bybitData.coin}</p>
-          <Link href={bybitData.exchange.link}>{bybitData.exchange.title}</Link>
-          <p>{bybitData.apy}</p>
-          <p>{bybitData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{bitgetData.coin}</p>
-          <Link href={bitgetData.exchange.link}>
-            {bitgetData.exchange.title}
-          </Link>
-          <p>{bitgetData.apy}</p>
-          <p>{bitgetData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{gateData.coin}</p>
-          <Link href={gateData.exchange.link}>{gateData.exchange.title}</Link>
-          <p>{gateData.apy}</p>
-          <p>{gateData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{binanceData.coin}</p>
-          <Link href={binanceData.exchange.link}>
-            {binanceData.exchange.title}
-          </Link>
-          <p>{binanceData.apy}</p>
-          <p>{binanceData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{kukoinData.coin}</p>
-          <Link href={kukoinData.exchange.link}>
-            {kukoinData.exchange.title}
-          </Link>
-          <p>{kukoinData.apy}</p>
-          <p>{kukoinData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{okxData.coin}</p>
-          <Link href={okxData.exchange.link}>{okxData.exchange.title}</Link>
-          <p>{okxData.apy}</p>
-          <p>{okxData.type}</p>
-        </li>
-        <li className="flex justify-center gap-10">
-          <p>{huobiData.coin}</p>
-          <Link href={huobiData.exchange.link}>{huobiData.exchange.title}</Link>
-          <p>{huobiData.apy}</p>
-          <p>{huobiData.type}</p>
-        </li>
+        {stakingList.map((data, index) => (
+          <li key={index} className="flex justify-center gap-10">
+            <p>{data.coin}</p>
+            <Link href={data.exchange.link}>{data.exchange.title}</Link>
+            <p>{data.apy}</p>
+            <p>{data.type}</p>
+          </li>
+        ))}
       </ul>
     </div>
   );
