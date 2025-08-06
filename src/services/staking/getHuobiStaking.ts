@@ -4,6 +4,10 @@ export async function getHuobiStaking() {
       "https://www.htx.com/-/x/hbg/v4/saving/mining/project/queryYbbList?page=1&holdCurrency=0&r=m900pr&x-b3-traceid=71c122a297957ca3fd80fbd03105990a"
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData = data.data[3];

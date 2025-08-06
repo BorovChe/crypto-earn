@@ -4,6 +4,10 @@ export async function getKukoinStaking() {
       "https://www.kucoin.com/_pxapi/pool-staking/v3/products/search?lang=uk_UA"
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData = data.data.products[0].products[12];

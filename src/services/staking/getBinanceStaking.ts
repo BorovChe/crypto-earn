@@ -6,6 +6,10 @@ export async function getBinanceStaking() {
       "https://www.binance.com/bapi/earn/v1/friendly/finance-earn/simple-earn/homepage/details?requestSource=WEB&pageIndex=1&pageSize=10&includeEthStaking=true&includeSolStaking=true&includeP2pLoan=true&simpleEarnType=ALL"
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData = data.data.list.find((item) => item.asset === "USDT");

@@ -13,6 +13,10 @@ export async function getMexcStaking() {
       }
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData = data?.data[1]?.holdPosList[0];

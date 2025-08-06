@@ -12,6 +12,10 @@ export async function getWhitebitStaking() {
       }
     );
 
+    // if (!res.ok) {
+    //   throw new Error(`Failed to fetch staking data: ${res.status}`);
+    // }
+
     console.log(response.data);
     // console.log(
     //   response.data.data.allProducts.currencies[0].products[0].rate.rateNum

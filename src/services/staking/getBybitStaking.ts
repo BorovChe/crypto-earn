@@ -22,6 +22,10 @@ export async function getBybitStaking() {
       }
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData = data.result.coin_products[0].saving_products[0];

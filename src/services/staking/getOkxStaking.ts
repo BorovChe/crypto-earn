@@ -4,6 +4,10 @@ export async function getOkxStaking() {
       "https://www.okx.com/priapi/v1/earn/simple-earn/all-products?limit=8&type=all&t=1754411653363"
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData =

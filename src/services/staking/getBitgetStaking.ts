@@ -23,6 +23,10 @@ export async function getBitgetStaking() {
       }
     );
 
+    if (!res.ok) {
+      throw new Error(`Failed to fetch staking data: ${res.status}`);
+    }
+
     const data = await res.json();
 
     const stakingData = data.data[0].bizLineProductList[0].productList[0];
