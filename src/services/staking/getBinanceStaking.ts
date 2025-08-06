@@ -8,7 +8,8 @@ export async function getBinanceStaking() {
 
     const data = await res.json();
 
-    const stakingData = data.data.list[2];
+    const stakingData = data.data.list.find((item) => item.asset === "USDT");
+
     const rounded = Math.round(stakingData.apyRange[1] * 100);
     const apy = rounded + "%";
 
