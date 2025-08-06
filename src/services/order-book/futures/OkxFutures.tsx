@@ -1,7 +1,7 @@
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 import React, { useEffect, useState } from "react";
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { okx } from "../../../../public/exchenges";
+import { okx } from "../../../../public/icons/exchenges";
 
 const OkxFutures = ({ ticker }: IOrderBookProps) => {
   const [buy, setBuy] = useState(0);

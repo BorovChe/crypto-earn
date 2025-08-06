@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { kukoin } from "../../../../public/exchenges";
+import { kukoin } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 

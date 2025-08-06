@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import pako from "pako";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { huobi } from "../../../../public/exchenges";
+import { huobi } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 

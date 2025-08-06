@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { bybit } from "../../../../public/exchenges";
+import { bybit } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 

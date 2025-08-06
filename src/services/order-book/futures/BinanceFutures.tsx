@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { binance } from "../../../../public/exchenges";
+import { binance } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 import OrderBookItem from "@/components/arbitration/order-book-item";

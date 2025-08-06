@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import pako from "pako";
 
-import { bingx } from "../../../../public/exchenges";
+import { bingx } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 import OrderBookItem from "@/components/arbitration/order-book-item";

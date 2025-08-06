@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { binance } from "../../../../public/exchenges";
+import { binance } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 

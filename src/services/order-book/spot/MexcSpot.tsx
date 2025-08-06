@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { mexc } from "../../../../public/exchenges";
+import { mexc } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 

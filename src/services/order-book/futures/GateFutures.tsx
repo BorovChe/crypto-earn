@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { gate } from "../../../../public/exchenges";
+import { gate } from "../../../../public/icons/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 
