@@ -30,6 +30,6 @@ export async function getBinanceStaking() {
     return updatedData;
   } catch (error) {
     console.log(error);
-    throw new Error("Error");
+    return null;
   }
 }

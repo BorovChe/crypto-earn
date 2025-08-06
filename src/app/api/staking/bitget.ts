@@ -46,7 +46,6 @@ export async function getBitgetStaking() {
     return updatedData;
   } catch (error) {
     console.log(error);
-    throw new Error("Error");
-    // console.error("Ошибка запроса к MEXC:", error?.message || error);
+    return null;
   }
 }

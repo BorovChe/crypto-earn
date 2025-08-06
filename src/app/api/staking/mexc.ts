@@ -36,6 +36,6 @@ export async function getMexcStaking() {
     return updatedData;
   } catch (error: unknown) {
     console.log(error);
-    throw new Error("Error");
+    return null;
   }
 }

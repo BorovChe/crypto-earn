@@ -9,36 +9,25 @@ import { getKukoinStaking } from "../kukoin";
 import { getOkxStaking } from "../okx";
 
 export async function GET() {
-  try {
-    const [bybit, mexc, binance, bitget, gate, huobi, kukoin, okx] =
-      await Promise.all([
-        getBybitStaking(),
-        getMexcStaking(),
-        getBinanceStaking(),
-        getBitgetStaking(),
-        getGateStaking(),
-        getHuobiStaking(),
-        getKukoinStaking(),
-        getOkxStaking(),
-      ]);
+  const responses = await Promise.allSettled([
+    getBybitStaking(),
+    getMexcStaking(),
+    getBinanceStaking(),
+    getBitgetStaking(),
+    getGateStaking(),
+    getHuobiStaking(),
+    getKukoinStaking(),
+    getOkxStaking(),
+  ]);
 
-    const result = [
-      bybit,
-      mexc,
-      binance,
-      bitget,
-      gate,
-      huobi,
-      kukoin,
-      okx,
-    ].filter(Boolean);
+  const list = responses
+    .filter((r) => r.status === "fulfilled")
+    .map((r) => r.value);
 
-    return NextResponse.json(result);
-  } catch (err) {
-    console.error("fetchAllStaking error:", err);
-    return NextResponse.json(
-      { error: "Something went wrong" },
-      { status: 500 }
-    );
+  if (!list.length) {
+    console.error(responses);
+    return NextResponse.json({ error: "All sources failed" }, { status: 500 });
   }
+
+  return NextResponse.json(list);
 }

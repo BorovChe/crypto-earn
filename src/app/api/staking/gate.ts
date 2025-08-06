@@ -27,6 +27,6 @@ export async function getGateStaking() {
     return updatedData;
   } catch (error: unknown) {
     console.log(error);
-    throw new Error("Error");
+    return null;
   }
 }
