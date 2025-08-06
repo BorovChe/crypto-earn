@@ -12,7 +12,7 @@ import { IStakingData } from "@/interfaces/staking";
 // import { getWhitebitStaking } from "@/services/staking/getWhiteBitStaking";
 // import { getBingXStaking } from "../../services/staking/getBingXStaking";
 
-// export const revalidate = 1000;
+export const revalidate = 1000;
 
 const StakingPage = async () => {
   const bybitData: IStakingData = await getBybitStaking()!;
