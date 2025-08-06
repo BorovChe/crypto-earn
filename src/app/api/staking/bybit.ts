@@ -1,5 +1,3 @@
-import { IStakingData } from "@/interfaces/staking";
-
 export async function getBybitStaking() {
   try {
     const res = await fetch(
@@ -22,9 +20,7 @@ export async function getBybitStaking() {
       }
     );
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch staking data: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`Bybit fetch error: ${res.status}`);
 
     const data = await res.json();
 
@@ -32,7 +28,7 @@ export async function getBybitStaking() {
 
     const apy = stakingData.apy;
 
-    const updatedData: IStakingData = {
+    const updatedData = {
       coin: "USDT",
       apy,
       type: "flexible",
@@ -43,9 +39,8 @@ export async function getBybitStaking() {
     };
 
     return updatedData;
-  } catch (error: unknown) {
-    console.log(error);
-    // return null;
-    throw new Error("Failed to fetch staking data");
+  } catch (e) {
+    console.error("Bybit fetch error:", e);
+    return null;
   }
 }
