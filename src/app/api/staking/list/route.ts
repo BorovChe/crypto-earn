@@ -3,10 +3,10 @@ import { getBybitStaking } from "../bybit";
 import { getBinanceStaking } from "../binance";
 import { getMexcStaking } from "../mexc";
 import { getBitgetStaking } from "../bitget";
-import { getGateStaking } from "../gate";
-import { getHuobiStaking } from "../huobi";
-import { getKukoinStaking } from "../kukoin";
-import { getOkxStaking } from "../okx";
+// import { getGateStaking } from "../gate";
+// import { getHuobiStaking } from "../huobi";
+// import { getKukoinStaking } from "../kukoin";
+// import { getOkxStaking } from "../okx";
 
 export async function GET() {
   const responses = await Promise.allSettled([
@@ -14,10 +14,10 @@ export async function GET() {
     getMexcStaking(),
     getBinanceStaking(),
     getBitgetStaking(),
-    getGateStaking(),
-    getHuobiStaking(),
-    getKukoinStaking(),
-    getOkxStaking(),
+    // getGateStaking(),
+    // getHuobiStaking(),
+    // getKukoinStaking(),
+    // getOkxStaking(),
   ]);
 
   const list = responses
