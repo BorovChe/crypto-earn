@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { whitebit } from "../../../../public/icons/exchenges";
+import { whitebit } from "../../../../public/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 

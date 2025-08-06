@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import OrderBookItem from "@/components/arbitration/order-book-item";
-import { bitget } from "../../../../public/icons/exchenges";
+import { bitget } from "../../../../public/exchenges";
 
 import { IOrderBookProps } from "@/interfaces/orderBook.interface";
 
