@@ -7,6 +7,7 @@ import { getGateStaking } from "../gate";
 import { getHuobiStaking } from "../huobi";
 import { getKukoinStaking } from "../kukoin";
 import { getOkxStaking } from "../okx";
+import { IStakingData } from "@/interfaces/staking";
 
 export async function GET() {
   const responses = await Promise.allSettled([
@@ -21,7 +22,10 @@ export async function GET() {
   ]);
 
   const list = responses
-    .filter((r) => r.status === "fulfilled")
+    .filter(
+      (r): r is PromiseFulfilledResult<IStakingData> =>
+        r.status === "fulfilled" && r.value !== null
+    )
     .map((r) => r.value);
 
   if (!list.length) {
