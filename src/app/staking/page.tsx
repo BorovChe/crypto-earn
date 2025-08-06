@@ -10,7 +10,7 @@ import { getOkxStaking } from "../../../pages/api/staking/getOkxStaking";
 import { getHuobiStaking } from "../../../pages/api/staking/getHuobiStaking";
 import { IStakingData } from "@/interfaces/staking";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 const StakingPage = async () => {
   let bybitData: IStakingData | null = null;
