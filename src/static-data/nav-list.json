@@ -1,5 +1,7 @@
 [
+  { "id": "/", "title": "Home" },
   { "id": "arbitration", "title": "Arbitration" },
   { "id": "staking", "title": "Staking" },
-  { "id": "launchpools", "title": "Launchpools" }
+  { "id": "launchpools", "title": "Launchpools" },
+  { "id": "activity", "title": "Activity" }
 ]
