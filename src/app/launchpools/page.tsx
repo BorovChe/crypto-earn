@@ -3,6 +3,8 @@ import Container from "@/components/UI/Container";
 import { getLaunchpoolList } from "@/services/launchpools/launchpool-list";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
+
 const LaunchpoolPage = async () => {
   const data = await getLaunchpoolList();
   console.log(data);
