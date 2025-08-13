@@ -1,13 +1,14 @@
 import { IStakingData } from "@/interfaces/staking";
-import { getStakingList } from "@/services/staking/staking-list";
+// import { getStakingList } from "@/services/staking/staking-list";
 import Image from "next/image";
 import Link from "next/link";
 
 import tether from "../../../public/icons/coins/tether.svg";
 import Container from "@/components/UI/Container";
+import { getList } from "@/services/staking/staking/list/route";
 
 const StakingPage = async () => {
-  const stakingList: IStakingData[] | null = await getStakingList();
+  const stakingList: IStakingData[] | null = await getList();
 
   if (!stakingList) {
     return <div>Ошибка загрузки. Попробуйте позже</div>;
