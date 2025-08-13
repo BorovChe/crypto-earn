@@ -8,6 +8,9 @@ const SideBar = () => {
           <Link href="/activity/">Hot Activity 🔥</Link>
         </li>
         <li>
+          <Link href="/activity/bybit">Bybit</Link>
+        </li>
+        <li>
           <Link href="/activity/mexc">Mexc</Link>
         </li>
         <li>
