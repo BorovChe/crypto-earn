@@ -1,24 +1,32 @@
-import Container from "@/components/UI/Container";
-// import { getGateLauncpool } from "@/services/launchpools/gate";
-import { getLaunchpoolList } from "@/services/launchpools/launchpool-list";
 import Image from "next/image";
 
-export const dynamic = "force-dynamic";
+import { getLaunchpoolList } from "@/services/launchpools/launchpool-list";
+
+import Container from "@/components/UI/Container";
+import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
+
+import { LaunchpoolData } from "@/interfaces/launchpool";
+
+export const revalidate = 1200;
 
 const LaunchpoolPage = async () => {
-  const data = await getLaunchpoolList();
-  console.log(data);
+  const data: LaunchpoolData[] = await getLaunchpoolList();
 
-  if (!data) {
+  if (!data.length) {
     return <div>Ошибка загрузки. Попробуйте позже</div>;
   }
 
   return (
     <section className="py-10">
       <Container>
-        <h1 className="mb-4 text-xl text-left font-bold uppercase">
-          Launchpools
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="mb-4 text-xl text-left font-bold uppercase">
+            Launchpools
+          </h1>
+          <div className="flex gap-4">
+            <LastUpdateTime />
+          </div>
+        </div>
         <ul className="flex justify-center items-center flex-col gap-4">
           {data.map((launchpool, i) => (
             <li key={i} className="flex gap-4">

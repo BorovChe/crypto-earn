@@ -1,5 +1,5 @@
 const ActivityPage = () => {
-  return <></>;
+  return <>Hot page</>;
 };
 
 export default ActivityPage;

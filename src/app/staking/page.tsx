@@ -1,25 +1,34 @@
-import { IStakingData } from "@/interfaces/staking";
-// import { getStakingList } from "@/services/staking/staking-list";
 import Image from "next/image";
 import Link from "next/link";
 
-import tether from "../../../public/icons/coins/tether.svg";
+import { getStakingList } from "@/services/staking/staking-list";
+
 import Container from "@/components/UI/Container";
-import { getList } from "@/services/staking/staking/list/route";
+import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
+import tether from "../../../public/icons/coins/tether.svg";
+
+import { StakingData } from "@/interfaces/staking";
+
+export const revalidate = 1200;
 
 const StakingPage = async () => {
-  const stakingList: IStakingData[] | null = await getList();
+  const stakingList: StakingData[] = await getStakingList();
 
-  if (!stakingList) {
+  if (!stakingList.length) {
     return <div>Ошибка загрузки. Попробуйте позже</div>;
   }
 
   return (
     <section className="py-10">
       <Container>
-        <h1 className="mb-4 text-xl text-left font-bold uppercase">
-          Staking Page
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="mb-4 text-xl text-left font-bold uppercase">
+            Staking Page
+          </h1>
+          <div className="flex gap-4">
+            <LastUpdateTime />
+          </div>
+        </div>
         <ul className="flex justify-center items-center flex-col">
           {stakingList.map((data, index) => (
             <li
@@ -45,5 +54,4 @@ const StakingPage = async () => {
   );
 };
 
-// border-bottom: 1px solid var(--gray-ele-ele-line, #f3f5f7);
 export default StakingPage;

@@ -1,13 +1,16 @@
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { getGateLaunchpool } from "./gate";
 
-export async function getLaunchpoolList() {
-  try {
-    const res = await fetch(`${baseUrl}/api/launchpools/list`);
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return null;
-  }
-}
+import { LaunchpoolData } from "@/interfaces/launchpool";
+
+export const getLaunchpoolList = async (): Promise<LaunchpoolData[]> => {
+  const responses = await Promise.allSettled([getGateLaunchpool()]);
+
+  const list = responses
+    .filter(
+      (r): r is PromiseFulfilledResult<LaunchpoolData[]> =>
+        r.status === "fulfilled" && r.value !== null
+    )
+    .map((r) => r.value);
+
+  return list.flat();
+};

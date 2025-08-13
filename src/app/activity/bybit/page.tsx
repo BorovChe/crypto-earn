@@ -2,7 +2,7 @@ import { getBybitTokenSplash } from "@/services/activitys/bybit/token-splash";
 
 const Bybit = async () => {
   const data = await getBybitTokenSplash();
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

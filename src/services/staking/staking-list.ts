@@ -1,19 +1,32 @@
-import { IStakingData } from "@/interfaces/staking";
+import { getBybitStaking } from "./bybit";
+import { getBinanceStaking } from "./binance";
+import { getMexcStaking } from "./mexc";
+import { getBitgetStaking } from "./bitget";
+import { getGateStaking } from "./gate";
+import { getHuobiStaking } from "./huobi";
+import { getKukoinStaking } from "./kukoin";
+import { getOkxStaking } from "./okx";
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { StakingData } from "@/interfaces/staking";
 
-export async function getStakingList(): Promise<IStakingData[] | null> {
-  try {
-    const res = await fetch(`${baseUrl}/api/staking/list`, {
-      next: { revalidate: 60 },
-    });
+export const getStakingList = async (): Promise<StakingData[]> => {
+  const responses = await Promise.allSettled<StakingData | null>([
+    getBybitStaking(),
+    getMexcStaking(),
+    getBinanceStaking(),
+    getBitgetStaking(),
+    getGateStaking(),
+    getHuobiStaking(),
+    getKukoinStaking(),
+    getOkxStaking(),
+  ]);
 
-    if (!res.ok) return null;
-    const data = await res.json();
+  const list = responses
+    .filter(
+      (r): r is PromiseFulfilledResult<StakingData> =>
+        r.status === "fulfilled" && r.value !== null
+    )
+    .map((r) => r.value);
 
-    return data;
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return null;
-  }
-}
+  return list;
+};
