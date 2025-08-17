@@ -24,7 +24,7 @@ export const getGateLaunchpool = async (): Promise<LaunchpoolData[] | null> => {
 
     const updatedData = launchpoolData.map((item) => {
       const unixDate = new Date(1000 * item.real_end_timest);
-      const endTime = unixDate.toISOString();
+      const endTime = unixDate.toLocaleString();
 
       const rewardsPool = item.reward_pools.map((rewards) => {
         return {

@@ -34,7 +34,9 @@ const KukoinSpot = ({ ticker }: OrderBookProps) => {
       try {
         closeSocket();
 
-        const response = await fetch("/api/kukoinToken");
+        const response = await fetch(
+          "http://localhost:3000/api/arbitration/kukoinToken"
+        );
         const { token, instanceServers } = await response.json();
 
         if (!token || !instanceServers || instanceServers.length === 0) {
@@ -61,6 +63,8 @@ const KukoinSpot = ({ ticker }: OrderBookProps) => {
 
         socket.onmessage = (event) => {
           const { data, type } = JSON.parse(event.data);
+
+          console.log(data);
           if (type === "message" && data) {
             setBuy(data.bestBid);
             setSell(data.bestAsk);

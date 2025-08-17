@@ -5,16 +5,17 @@ import { getStakingList } from "@/services/staking/staking-list";
 
 import Container from "@/components/UI/Container";
 import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
-import tether from "../../../public/icons/coins/tether.svg";
 
 import { StakingData } from "@/interfaces/staking";
+import Pagination from "@/components/pagination/Pagination";
 
-export const revalidate = 1200;
+const StakingPage = async ({ searchParams }) => {
+  const params = await searchParams;
+  const page: number = params.page ?? 1;
 
-const StakingPage = async () => {
-  const stakingList: StakingData[] = await getStakingList();
+  const stakingData: StakingData | null = await getStakingList(+page, 20);
 
-  if (!stakingList.length) {
+  if (!stakingData || !stakingData.list.length) {
     return <div>Ошибка загрузки. Попробуйте позже</div>;
   }
 
@@ -29,8 +30,8 @@ const StakingPage = async () => {
             <LastUpdateTime />
           </div>
         </div>
-        <ul className="flex justify-center items-center flex-col">
-          {stakingList.map((data, index) => (
+        <ul className="mb-4 flex justify-center items-center flex-col">
+          {stakingData.list.map((data, index) => (
             <li
               key={index}
               className="flex justify-between items-baseline  py-4 w-full border-b
@@ -40,7 +41,13 @@ const StakingPage = async () => {
                 {data.exchange.title}
               </Link>
               <div className="flex gap-4">
-                <Image src={tether} width={30} height={30} alt={data.coin} />
+                <Image
+                  src={data.logoUrl}
+                  width={30}
+                  height={30}
+                  alt={data.coin}
+                  className="rounded-full"
+                />
                 <p>{data.coin}</p>
               </div>
               <p className="w-16 text-[#20b26c] font-medium">{data.apy}</p>
@@ -49,6 +56,12 @@ const StakingPage = async () => {
             </li>
           ))}
         </ul>
+        <div className="flex justify-center">
+          <Pagination
+            currentPage={stakingData.page}
+            totalPages={stakingData.totalPages}
+          />
+        </div>
       </Container>
     </section>
   );

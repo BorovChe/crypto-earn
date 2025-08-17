@@ -15,6 +15,7 @@ export default async function handler(
     const response = await axios.post(
       `${KUCOIN_FUTURES_API_URL}/api/v1/bullet-public`
     );
+    console.log(response);
     const data = response.data.data;
     res.status(200).json(data);
   } catch (error) {

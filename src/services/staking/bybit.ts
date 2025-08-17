@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
 import { API_EXCHANGES_BASE_URLS } from "@/config/api";
 
-import { StakingData } from "@/interfaces/staking";
+import { StakingList } from "@/interfaces/staking";
 
 interface BybitApiResponse {
   result: {
@@ -9,7 +9,7 @@ interface BybitApiResponse {
   };
 }
 
-export const getBybitStaking = async (): Promise<StakingData | null> => {
+export const getBybitStaking = async (): Promise<StakingList | null> => {
   try {
     const data = await safeFetch<BybitApiResponse>(
       `${API_EXCHANGES_BASE_URLS.BYBIT}/x-api/s1/byfi/get-easy-earn-product-list`,

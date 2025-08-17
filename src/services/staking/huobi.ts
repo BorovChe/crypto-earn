@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
 import { API_EXCHANGES_BASE_URLS } from "@/config/api";
 
-import { StakingData } from "@/interfaces/staking";
+import { StakingList } from "@/interfaces/staking";
 
 interface HuobiApiResponse {
   data: {
@@ -9,7 +9,7 @@ interface HuobiApiResponse {
   };
 }
 
-export const getHuobiStaking = async (): Promise<StakingData | null> => {
+export const getHuobiStaking = async (): Promise<StakingList | null> => {
   try {
     const data = await safeFetch<HuobiApiResponse>(
       `${API_EXCHANGES_BASE_URLS.HUOBI}/-/x/hbg/v4/saving/mining/project/queryYbbList?page=1&holdCurrency=0&r=m900pr&x-b3-traceid=71c122a297957ca3fd80fbd03105990a`

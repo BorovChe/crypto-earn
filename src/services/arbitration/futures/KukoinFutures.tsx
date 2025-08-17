@@ -34,9 +34,11 @@ const KukoinFutures = ({ ticker }: OrderBookProps) => {
       try {
         closeSocket();
 
-        const response = await fetch("/api/futuresToken");
+        const response = await fetch(
+          "http://localhost:3000/api/arbitration/futuresToken"
+        );
         const { token, instanceServers } = await response.json();
-
+        console.log(token);
         if (!token || !instanceServers || instanceServers.length === 0) {
           throw new Error("Некорректные данные токена или серверов");
         }

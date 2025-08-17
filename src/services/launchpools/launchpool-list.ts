@@ -1,9 +1,13 @@
 import { getGateLaunchpool } from "./gate";
 
 import { LaunchpoolData } from "@/interfaces/launchpool";
+import { getKukoinLaunchpool } from "./kukoin";
 
 export const getLaunchpoolList = async (): Promise<LaunchpoolData[]> => {
-  const responses = await Promise.allSettled([getGateLaunchpool()]);
+  const responses = await Promise.allSettled([
+    getGateLaunchpool(),
+    getKukoinLaunchpool(),
+  ]);
 
   const list = responses
     .filter(

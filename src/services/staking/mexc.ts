@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
 import { API_EXCHANGES_BASE_URLS } from "@/config/api";
 
-import { StakingData } from "@/interfaces/staking";
+import { StakingList } from "@/interfaces/staking";
 
 interface MexcApiResponse {
   data: {
@@ -9,7 +9,7 @@ interface MexcApiResponse {
   };
 }
 
-export const getMexcStaking = async (): Promise<StakingData | null> => {
+export const getMexcStaking = async (): Promise<StakingList | null> => {
   try {
     const data = await safeFetch<MexcApiResponse>(
       `${API_EXCHANGES_BASE_URLS.MEXC}/api/operateactivity/staking?currency=USDT`,

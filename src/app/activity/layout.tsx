@@ -1,4 +1,4 @@
-import SideBar from "@/components/activity/side-bar/SideBar";
+import SideBar from "@/components/layout/SideBar";
 
 const ActivityLayout = ({ children }) => {
   return (

@@ -1,34 +1,61 @@
-export async function getKukoinStaking() {
+import { safeFetch } from "@/tools/safeFetch";
+import { API_EXCHANGES_BASE_URLS } from "@/config/api";
+
+import { LaunchpoolData } from "@/interfaces/launchpool";
+
+interface KukoinAPIResponse {
+  data: {
+    gemNewPool: {
+      details: {
+        endActivity: number;
+        poolInfoList: { annualPercentageRate: number; stakingToken: string }[];
+        shortName: string;
+        logoUrl: string;
+      }[];
+    };
+  };
+}
+
+export const getKukoinLaunchpool = async (): Promise<
+  LaunchpoolData[] | null
+> => {
   try {
-    const res = await fetch(
-      "https://www.kucoin.com/_pxapi/pool-staking/v3/products/search?lang=uk_UA"
+    const data = await safeFetch<KukoinAPIResponse>(
+      `${API_EXCHANGES_BASE_URLS.KUKOIN}/_api/currency-front/gem/customer/ongoingGem?lang=uk_UA`
     );
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch staking data: ${res.status}`);
-    }
+    const stakingData = data?.data?.gemNewPool?.details;
 
-    const data = await res.json();
+    const updatedData = stakingData.map((item) => {
+      const unixDate = new Date(1000 * item.endActivity);
+      const endTime = unixDate.toLocaleString();
 
-    const stakingData = data.data.products[0].products[12];
+      const rewardsPool = item.poolInfoList.map((rewards) => {
+        const multiply = rewards.annualPercentageRate * 100;
+        const rounded: number = Math.round(multiply * 100) / 100;
+        const apr = rounded + "%";
 
-    const apy = stakingData.apr;
+        return {
+          coin: rewards.stakingToken,
+          apr,
+        };
+      });
 
-    const rounded = Math.round(apy * 100) / 100;
-
-    const updatedData = {
-      coin: "USDT",
-      apy: rounded + "%",
-      type: "flexible",
-      exchange: {
-        title: "Kukoin",
-        link: "https://www.gate.com/uk/simple-earn",
-      },
-    };
+      return {
+        coin: item.shortName,
+        icon: item.logoUrl,
+        endTime,
+        rewardsPool,
+        exchange: {
+          title: "Kukoin",
+          link: "https://www.kucoin.com/uk/gemspace/ongoing",
+        },
+      };
+    });
 
     return updatedData;
-  } catch (error: unknown) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     return null;
   }
-}
+};

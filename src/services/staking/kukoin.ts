@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
 import { API_EXCHANGES_BASE_URLS } from "@/config/api";
 
-import { StakingData } from "@/interfaces/staking";
+import { StakingList } from "@/interfaces/staking";
 
 interface KukoinApiResponse {
   data: {
@@ -9,7 +9,7 @@ interface KukoinApiResponse {
   };
 }
 
-export const getKukoinStaking = async (): Promise<StakingData | null> => {
+export const getKukoinStaking = async (): Promise<StakingList | null> => {
   try {
     const data = await safeFetch<KukoinApiResponse>(
       `${API_EXCHANGES_BASE_URLS.KUKOIN}/_pxapi/pool-staking/v3/products/search?lang=uk_UA`

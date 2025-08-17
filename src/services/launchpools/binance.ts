@@ -1,5 +1,3 @@
-import { StakingData } from "@/interfaces/staking";
-
 export async function getBinanceStaking() {
   try {
     const res = await fetch(
@@ -17,7 +15,7 @@ export async function getBinanceStaking() {
     const rounded = Math.round(stakingData.apyRange[1] * 100);
     const apy = rounded + "%";
 
-    const updatedData: StakingData = {
+    const updatedData = {
       coin: "USDT",
       apy,
       type: "flexible",

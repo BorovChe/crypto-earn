@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
 import { API_EXCHANGES_BASE_URLS } from "@/config/api";
 
-import { StakingData } from "@/interfaces/staking";
+import { StakingList } from "@/interfaces/staking";
 
 interface OkxApiResponse {
   data: {
@@ -11,7 +11,7 @@ interface OkxApiResponse {
   };
 }
 
-export const getOkxStaking = async (): Promise<StakingData | null> => {
+export const getOkxStaking = async (): Promise<StakingList | null> => {
   try {
     const data = await safeFetch<OkxApiResponse>(
       `${API_EXCHANGES_BASE_URLS.OKX}/priapi/v1/earn/simple-earn/all-products?limit=8&type=all&t=1754411653363`

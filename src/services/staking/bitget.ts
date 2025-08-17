@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
 import { API_EXCHANGES_BASE_URLS } from "@/config/api";
 
-import { StakingData } from "@/interfaces/staking";
+import { StakingList } from "@/interfaces/staking";
 
 interface BitgetApiResponse {
   data: {
@@ -13,7 +13,7 @@ interface BitgetApiResponse {
   }[];
 }
 
-export const getBitgetStaking = async (): Promise<StakingData | null> => {
+export const getBitgetStaking = async (): Promise<StakingList | null> => {
   try {
     const data = await safeFetch<BitgetApiResponse>(
       `${API_EXCHANGES_BASE_URLS.BITGET}/v1/finance/savings/product/list`,

@@ -7,8 +7,6 @@ import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
 
 import { LaunchpoolData } from "@/interfaces/launchpool";
 
-export const revalidate = 1200;
-
 const LaunchpoolPage = async () => {
   const data: LaunchpoolData[] = await getLaunchpoolList();
 
@@ -34,7 +32,7 @@ const LaunchpoolPage = async () => {
               <p>{launchpool.coin}</p>
               <Image
                 src={launchpool.icon}
-                alt={launchpool.coin}
+                alt={launchpool.icon}
                 width={30}
                 height={30}
                 className="rounded-full"
