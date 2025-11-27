@@ -10,7 +10,7 @@ import { LaunchpoolData } from "@/interfaces/launchpool";
 const LaunchpoolPage = async () => {
   const data: LaunchpoolData[] = await getLaunchpoolList();
 
-  if (!data.length) {
+  if (!data || !data.length) {
     return <div>Ошибка загрузки. Попробуйте позже</div>;
   }
 
