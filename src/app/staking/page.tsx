@@ -5,22 +5,24 @@ import { getStakingList } from "@/services/staking/staking-list";
 
 import Container from "@/components/UI/Container";
 import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
+import Pagination from "@/components/pagination/Pagination";
+import SideBar from "@/components/layout/SideBar";
 
 import { StakingData } from "@/interfaces/staking";
-import Pagination from "@/components/pagination/Pagination";
 
 const StakingPage = async ({ searchParams }) => {
   const params = await searchParams;
   const page: number = params.page ?? 1;
 
-  const stakingData: StakingData | null = await getStakingList(+page, 20);
+  const stakingData: StakingData | null = await getStakingList(+page, 15);
 
   if (!stakingData || !stakingData.list.length) {
     return <div>Ошибка загрузки. Попробуйте позже</div>;
   }
 
   return (
-    <section className="py-10">
+    <section className="py-10 relative">
+      <SideBar />
       <Container>
         <div className="flex justify-between">
           <h1 className="mb-4 text-xl text-left font-bold uppercase">

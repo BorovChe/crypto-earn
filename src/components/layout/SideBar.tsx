@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const SideBar = () => {
   return (
-    <aside className="w-[300px]">
+    <aside className="w-[300px] absolute top-0 left-0">
       <ul className="flex flex-col justify-center items-center">
         <li>
           <Link href="/activity/">Hot Activity 🔥</Link>

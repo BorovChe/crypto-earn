@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Arbitration",
@@ -21,8 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <Header />
-        <main>{children}</main>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

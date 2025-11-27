@@ -4,7 +4,7 @@ import BitgetSpot from "./BitgetSpot";
 import BybitSpot from "./BybitSpot";
 import GateSpot from "./GateSpot";
 import HuobiSpot from "./HuobiSpot";
-import KukoinSpot from "./KukoinSpot";
+// import KukoinSpot from "./KukoinSpot";
 import MexcSpot from "./MexcSpot";
 import WhiteBitSpot from "./WhiteBitSpot";
 import OkxSpot from "./OkxSpot";
@@ -18,7 +18,7 @@ const spotExchanges = [
   GateSpot,
   HuobiSpot,
   BingXSpot,
-  KukoinSpot,
+  // KukoinSpot,
   WhiteBitSpot,
 ];
 
