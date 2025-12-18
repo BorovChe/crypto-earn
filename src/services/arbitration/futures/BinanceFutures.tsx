@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { binance } from "../../../../public/icons/exchenges";
 
-import { OrderBookProps } from "@/interfaces/orderBook";
-import OrderBookItem from "@/components/arbitration/order-book-item";
+import { OrderBookProps } from "@/types/orderBook";
+import OrderBookItem from "@/features/arbitration/order-book-item";
 
 const BinanceFutures = ({ ticker }: OrderBookProps) => {
   const updateSymbol = ticker.toLowerCase();

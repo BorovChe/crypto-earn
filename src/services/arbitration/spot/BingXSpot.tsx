@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import pako from "pako";
 
-import OrderBookItem from "@/components/arbitration/order-book-item";
+import OrderBookItem from "@/features/arbitration/order-book-item";
 import { bingx } from "../../../../public/icons/exchenges";
 
-import { OrderBookProps } from "@/interfaces/orderBook";
+import { OrderBookProps } from "@/types/orderBook";
 
 const BingXSpot = ({ ticker }: OrderBookProps) => {
   const [buy, setBuy] = useState(0);

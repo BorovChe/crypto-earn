@@ -1,6 +1,6 @@
 import { getGateLaunchpool } from "./gate";
 
-import { LaunchpoolData } from "@/interfaces/launchpool";
+import { LaunchpoolData } from "@/types/launchpool";
 import { getKukoinLaunchpool } from "./kukoin";
 
 export const getLaunchpoolList = async (): Promise<LaunchpoolData[]> => {

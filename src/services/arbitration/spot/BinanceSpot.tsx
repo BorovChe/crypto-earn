@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import OrderBookItem from "@/components/arbitration/order-book-item";
+import OrderBookItem from "@/features/arbitration/order-book-item";
 import { binance } from "../../../../public/icons/exchenges";
 
-import { OrderBookProps } from "@/interfaces/orderBook";
+import { OrderBookProps } from "@/types/orderBook";
 
 const BinanceSpot = ({ ticker }: OrderBookProps) => {
   const updateTicker: string = ticker.toLowerCase();

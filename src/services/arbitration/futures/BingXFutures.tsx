@@ -3,8 +3,8 @@ import pako from "pako";
 
 import { bingx } from "../../../../public/icons/exchenges";
 
-import { OrderBookProps } from "@/interfaces/orderBook";
-import OrderBookItem from "@/components/arbitration/order-book-item";
+import { OrderBookProps } from "@/types/orderBook";
+import OrderBookItem from "@/features/arbitration/order-book-item";
 
 const BingXFutures = ({ ticker }: OrderBookProps) => {
   const [buy, setBuy] = useState(0);

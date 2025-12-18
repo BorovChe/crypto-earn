@@ -1,92 +1,41 @@
-import Image from "next/image";
-import Link from "next/link";
+import { getStakingList } from "@/server/staking/staking-list";
 
-import { getStakingList } from "@/services/staking/staking-list";
+import {
+  StakingList,
+  SortControls,
+  // MultiSelectFilter,
+} from "@/features/staking/components/index";
+import { Container } from "@/components/UI/index";
 
-import Container from "@/components/UI/Container";
-import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
-import Pagination from "@/components/pagination/Pagination";
-// import SideBar from "@/components/layout/SideBar";
+import { IStakingData } from "@/types/staking";
 
-import { StakingData, StakingList } from "@/interfaces/staking";
+const PAGE_SIZE = 15;
 
-const StakingPage = async ({ searchParams }) => {
+interface SearchParamsProps {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}
+
+const StakingPage = async ({ searchParams }: SearchParamsProps) => {
   const params = await searchParams;
-  const page: number = params.page ?? 1;
+  const page = params.page ? Number(params.page) : 1;
+  const sort = params.sort || "";
 
-  const stakingData: StakingData | null = await getStakingList(+page, 15);
-
-  const filteredData = (): StakingList[] | null => {
-    if (!params.coin) return stakingData!.list;
-    return stakingData!.list.filter(
-      ({ coin }) => coin.toLowerCase() === params?.coin?.toLowerCase()
-    );
-  };
-
-  if (!stakingData || !stakingData.list.length) {
-    return <div>Ошибка загрузки. Попробуйте позже</div>;
-  }
+  const { list }: IStakingData = await getStakingList(
+    { page, sort },
+    PAGE_SIZE
+  );
 
   return (
     <section className="py-10 relative">
-      {/* <SideBar /> */}
       <Container>
-        <div className="flex justify-between">
+        <div className="flex justify-center gap-[600px]">
           <h1 className="mb-4 text-xl text-left font-bold uppercase">
             Staking Page
           </h1>
-          <Link
-            href={"/staking"}
-            className="flex justify-center items-center bg-slate-800 rounded-sm py-2 px-4"
-          >
-            All Coins
-          </Link>
-          <Link
-            href={"?coin=usdt"}
-            className={
-              "flex justify-center items-center bg-slate-800 rounded-sm py-2 px-4"
-            }
-          >
-            USDT
-          </Link>
-          <div className="flex gap-4">
-            <LastUpdateTime />
-          </div>
+          {/* <MultiSelectFilter /> */}
         </div>
-        <ul className="mb-4 flex justify-center items-center flex-col">
-          {filteredData()!.map((data, index) => (
-            <li
-              key={index}
-              className="flex justify-between items-baseline  py-4 w-full border-b
-              border-solid border-b-[#757576]"
-            >
-              <Link href={data.exchange.link} className="w-16">
-                {data.exchange.title}
-              </Link>
-              <div className="flex gap-4">
-                <Image
-                  src={data.logoUrl}
-                  width={30}
-                  height={30}
-                  alt={data.coin}
-                  className="rounded-full"
-                />
-                <p>{data.coin}</p>
-              </div>
-              <p className="w-16 text-[#20b26c] font-medium">{data.apy}</p>
-              <p>{data.type}</p>
-              <div className="w-8">▼</div>
-            </li>
-          ))}
-        </ul>
-        <div className="flex justify-center">
-          {filteredData()!.length > 14 && (
-            <Pagination
-              currentPage={stakingData.page}
-              totalPages={stakingData.totalPages}
-            />
-          )}
-        </div>
+        <SortControls />
+        <StakingList stakingList={list} />
       </Container>
     </section>
   );

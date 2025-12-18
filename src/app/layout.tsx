@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
 import type { Metadata } from "next";
+
 import { Open_Sans } from "next/font/google";
+
 import "./globals.css";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+// import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Arbitration",
@@ -17,7 +20,7 @@ const raleway = Open_Sans({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -25,7 +28,7 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <Header />
           <main>{children}</main>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </body>
     </html>

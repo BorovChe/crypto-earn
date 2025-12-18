@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
-import OrderBookItem from "@/components/arbitration/order-book-item";
+import OrderBookItem from "@/features/arbitration/order-book-item";
 import { bitget } from "../../../../public/icons/exchenges";
 
-import { OrderBookProps } from "@/interfaces/orderBook";
+import { OrderBookProps } from "@/types/orderBook";
 
 const BitgetFutures = ({ ticker }: OrderBookProps) => {
   const [buy, setBuy] = useState(0);

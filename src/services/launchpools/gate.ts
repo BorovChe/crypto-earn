@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
-import { API_EXCHANGES_BASE_URLS } from "@/config/api";
+import { API_EXCHANGES_BASE_URLS } from "@/config/base-exchange-urls";
 
-import { LaunchpoolData } from "@/interfaces/launchpool";
+import { LaunchpoolData } from "@/types/launchpool";
 
 interface GateAPIResponse {
   data: {
@@ -20,9 +20,19 @@ export const getGateLaunchpool = async (): Promise<LaunchpoolData[] | null> => {
       `${API_EXCHANGES_BASE_URLS.GATE}/apiw/v2/earn/launch-pool/project-list?page=1&pageSize=6&status=1`
     );
 
-    const launchpoolData = data?.data?.list;
+    const launchpoolData:
+      | {
+          coin: string;
+          icon: string;
+          real_end_timest: number;
+          reward_pools: {
+            coin: string;
+            rate_year: string | number;
+          }[];
+        }[]
+      | undefined = data?.data?.list;
 
-    const updatedData = launchpoolData.map((item) => {
+    const updatedData = launchpoolData!.map((item) => {
       const unixDate = new Date(1000 * item.real_end_timest);
       const endTime = unixDate.toLocaleString();
 

@@ -1,6 +1,12 @@
+import { ReactNode } from "react";
+
 import SideBar from "@/components/layout/SideBar";
 
-const ActivityLayout = ({ children }) => {
+interface IActivityLayoutProps {
+  children: ReactNode;
+}
+
+const ActivityLayout = ({ children }: IActivityLayoutProps) => {
   return (
     <div className="flex relative">
       <SideBar />

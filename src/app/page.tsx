@@ -1,11 +1,9 @@
-import BgImage from "@/components/UI/BgImage";
 import Container from "@/components/UI/Container";
 import NavLink from "@/components/UI/NavLink";
 
 export default function Home() {
   return (
     <section className="py-10 flex-1">
-      <BgImage urlPath={"/images/background/bg-home.png"} />
       <Container>
         <h1 className="text-6xl uppercase font-bold mb-4">Crypto earn</h1>
         <p

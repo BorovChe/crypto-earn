@@ -1,7 +1,7 @@
 import { safeFetch } from "@/tools/safeFetch";
-import { API_EXCHANGES_BASE_URLS } from "@/config/api";
+import { API_EXCHANGES_BASE_URLS } from "@/config/base-exchange-urls";
 
-import { LaunchpoolData } from "@/interfaces/launchpool";
+import { LaunchpoolData } from "@/types/launchpool";
 
 interface KukoinAPIResponse {
   data: {
@@ -24,9 +24,19 @@ export const getKukoinLaunchpool = async (): Promise<
       `${API_EXCHANGES_BASE_URLS.KUKOIN}/_api/currency-front/gem/customer/ongoingGem?lang=uk_UA`
     );
 
-    const stakingData = data?.data?.gemNewPool?.details;
+    const stakingData:
+      | {
+          endActivity: number;
+          poolInfoList: {
+            annualPercentageRate: number;
+            stakingToken: string;
+          }[];
+          shortName: string;
+          logoUrl: string;
+        }[]
+      | undefined = data?.data?.gemNewPool?.details;
 
-    const updatedData = stakingData.map((item) => {
+    const updatedData = stakingData!.map((item) => {
       const unixDate = new Date(1000 * item.endActivity);
       const endTime = unixDate.toLocaleString();
 

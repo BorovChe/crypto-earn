@@ -5,7 +5,7 @@ import { getLaunchpoolList } from "@/services/launchpools/launchpool-list";
 import Container from "@/components/UI/Container";
 import LastUpdateTime from "@/components/tools/last-update-time/LastUpdateTime";
 
-import { LaunchpoolData } from "@/interfaces/launchpool";
+import { LaunchpoolData } from "@/types/launchpool";
 
 const LaunchpoolPage = async () => {
   const data: LaunchpoolData[] = await getLaunchpoolList();

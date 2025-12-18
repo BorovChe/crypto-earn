@@ -1,39 +1,41 @@
-import { safeFetch } from "@/tools/safeFetch";
-import { API_EXCHANGES_BASE_URLS } from "@/config/api";
+// import { safeFetch } from "@/tools/safeFetch";
+// import { API_EXCHANGES_BASE_URLS } from "@/config/base-exchange-urls";
 
-import { StakingList } from "@/interfaces/staking";
+import { IStakingList } from "@/types/staking";
 
-interface MexcApiResponse {
-  data: {
-    holdPosList: { maxStepRate: number }[];
-  };
-}
+// interface MexcApiResponse {
+//   data: {
+//     holdPosList: { maxStepRate: number }[];
+//   };
+// }
 
-export const getMexcStaking = async (): Promise<StakingList[] | null> => {
+export const getMexcStaking = async (): Promise<IStakingList[] | null> => {
   try {
-    const data = await safeFetch<MexcApiResponse>(
-      `${API_EXCHANGES_BASE_URLS.MEXC}/api/operateactivity/staking?currency=USDT`,
-      {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
-          Accept: "application/json",
-          Origin: "https://www.mexc.com",
-          Referer: "https://www.mexc.com/",
-        },
-      }
-    );
+    // const data = await safeFetch<MexcApiResponse>(
+    //   `${API_EXCHANGES_BASE_URLS.MEXC}/api/operateactivity/staking?currency=USDT`,
+    //   {
+    //     headers: {
+    //       "User-Agent":
+    //         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+    //       Accept: "application/json",
+    //       Origin: "https://www.mexc.com",
+    //       Referer: "https://www.mexc.com/",
+    //     },
+    //   }
+    // );
 
-    const stakingData = data?.data[1]?.holdPosList?.[0];
+    // const stakingData = data?.data[1]?.holdPosList?.[0];
 
-    const apy: string = stakingData.maxStepRate * 100 + "%";
+    // const apy: string = stakingData.maxStepRate * 100 + "%";
 
     return [
       {
         coin: "USDT",
-        apy,
+        apy: [1],
         logoUrl: "/icons/coins/dummy.svg",
-        type: "flexible",
+        flexibleType: false,
+        fixedType: false,
+        productDetailList: [],
         exchange: {
           title: "Mexc",
           link: "https://www.mexc.com/uk-UA/staking",

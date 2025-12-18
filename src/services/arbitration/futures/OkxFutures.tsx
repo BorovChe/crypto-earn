@@ -1,6 +1,6 @@
-import { OrderBookProps } from "@/interfaces/orderBook";
+import { OrderBookProps } from "@/types/orderBook";
 import React, { useEffect, useState } from "react";
-import OrderBookItem from "@/components/arbitration/order-book-item";
+import OrderBookItem from "@/features/arbitration/order-book-item";
 import { okx } from "../../../../public/icons/exchenges";
 
 const OkxFutures = ({ ticker }: OrderBookProps) => {

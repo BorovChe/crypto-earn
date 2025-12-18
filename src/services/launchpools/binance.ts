@@ -8,16 +8,16 @@ export async function getBinanceStaking() {
       throw new Error(`Failed to fetch staking data: ${res.status}`);
     }
 
-    const data = await res.json();
+    // const data = await res.json();
 
-    const stakingData = data.data.list.find((item) => item.asset === "USDT");
+    // const stakingData = data.data.list.find((item) => item.asset === "USDT");
 
-    const rounded = Math.round(stakingData.apyRange[1] * 100);
-    const apy = rounded + "%";
+    // const rounded = Math.round(stakingData.apyRange[1] * 100);
+    // const apy = rounded + "%";
 
     const updatedData = {
       coin: "USDT",
-      apy,
+      apy: "any",
       type: "flexible",
       exchange: {
         title: "Binance",

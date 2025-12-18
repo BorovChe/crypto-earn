@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header
       className="blur-filter relative top-0 w-full flex items-center min-h-[64px]
-      bg-[black] shadow-[0_4px_12px_#191c2666] border-[--header-border-cl-20] border-b-[0.1px] border-solid  z-[999] px-5
+       shadow-[0_4px_12px_#191c2666] border-[--header-border-cl-20] border-b-[0.1px] border-solid  z-[999] px-5
        sm:px-8"
     >
       <div className="w-full flex justify-between gap-8">

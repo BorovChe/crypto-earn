@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 
 import spotExchanges from "@/services/arbitration/spot";
 import futuresExchanges from "@/services/arbitration/futures";
-import OrderBookList from "@/components/arbitration/order-book-list";
+import OrderBookList from "@/features/arbitration/order-book-list";
 
 const Arbitration = () => {
   const [ticker, setTicker] = useState<string>("");
